@@ -45,7 +45,7 @@ class Form extends Component {
         //let target = event.target;
         //let value = target.type ===='checkbox' ? target.checked : target.value;
         //let name = target.name;
-
+        event.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
