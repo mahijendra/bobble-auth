@@ -90,10 +90,7 @@ class Form extends Component {
             <div>
 
 <div className="flex flex-col bg-gray-300 max-w-2xl  mx-auto ">
-  <div className="container flex-1 flex flex-col items-center justify-center px-2">
-      <div className="grid grid-cols-2">
-      <SignIn/>
-      </div>
+  
     <form className="px-6 py-8 rounded  text-black w-full" onSubmit={this.handleSubmit}>
       <h1 className="mb-8 text-3xl text-center">Sign up</h1>
 
@@ -149,6 +146,10 @@ class Form extends Component {
         Create Account
       </button>      
     </form>    
+    <div className="container flex-1 flex flex-col items-center justify-center px-2">
+      <div className="grid grid-cols-2">
+        <SignIn/>
+      </div>
   </div>
 </div>
 {/* 

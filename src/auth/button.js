@@ -16,6 +16,7 @@ class SignIn extends React.Component {
       // We will display Google and Facebook as auth providers.
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       ],
       callbacks: {
         // Avoid redirects after sign-in.
@@ -38,10 +39,7 @@ class SignIn extends React.Component {
     render() {
       if (!this.state.isSignedIn) {
         return (
-          <div style={{
-            backgroundColor: "#2a2a2a",
-            borderRadius: "10px"
-          }}
+          <div 
           className="signin">
             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>  
           </div>
