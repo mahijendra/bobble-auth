@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './CSS/todo.css'
 import firebase from '../auth/config'
+import SignIn from '../auth/button'
 
 console.log(firebase)
 
@@ -14,6 +15,9 @@ class Form extends Component {
             lastName: "",
             password: "",
             email: "",
+            submit_in_progress: false,
+            success : false,
+            error: false
         }
         this.handleSubmit=this.handleSubmit.bind(this)
     }
@@ -46,31 +50,50 @@ class Form extends Component {
         //let value = target.type ===='checkbox' ? target.checked : target.value;
         //let name = target.name;
         event.preventDefault();
+        this.setState({
+            submit_in_progress : true,
+                firstName: "",
+                lastName: "",
+                password: '',
+                email: "",            
+        })
+        const that  = this;
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
+            that.setState({
+                submit_in_progress : false,
+                success : !error ? true : false,
+                error : error
+            })
           });
           
           
 
-          this.setState({
-            firstName: "",
-            lastName: "",
-            password: '',
-            email: "",
-        })
+       
      
         
     }
 
     render() {
+        if(this.state.submit_in_progress){
+            return <div className="text-blue-500 p-16 bg-white ">...loading</div>
+        }else if(this.state.success){
+            return <div className="text-green-900 p-16 bg-white ">
+                Success
+            </div>
+        } else if(this.state.error){
+        return <div className="text-red-900 p-16 bg-white ">{this.state.error.message}</div>
+        }
         return (
             <div>
 
 <div className="flex flex-col bg-gray-300 max-w-2xl  mx-auto ">
   <div className="container flex-1 flex flex-col items-center justify-center px-2">
+      <div className="grid grid-cols-2">
+      <SignIn/>
+      </div>
     <form className="px-6 py-8 rounded  text-black w-full" onSubmit={this.handleSubmit}>
       <h1 className="mb-8 text-3xl text-center">Sign up</h1>
 
@@ -125,17 +148,7 @@ class Form extends Component {
       >
         Create Account
       </button>      
-    </form>
-    <div className="text-grey-dark mt-6">
-      Already have an account?
-      <a
-        className="no-underline border-b border-blue text-blue"
-        href="/login/"
-      >
-        Log in
-      </a>
-      .
-    </div>
+    </form>    
   </div>
 </div>
 {/* 

@@ -3,11 +3,15 @@ import firebase from './auth/config'
 
 export default class AuthProvider extends React.Component{
     state = {
-        isSignedIn : false
+        isSignedIn : false,
+        init : false
     }
     componentDidMount() {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-            (user) => this.setState({isSignedIn: !!user})
+            (user) => {
+                console.log(user);
+                this.setState({isSignedIn: !!user, init: true})
+            }
         );
       }
       componentWillUnmount(){
@@ -15,7 +19,7 @@ export default class AuthProvider extends React.Component{
       }
       render(){
           return <>
-            {this.props.children(this.state.isSignedIn)}
+            {this.props.children(this.state.isSignedIn, this.state.init)}
           </>
       }
 }

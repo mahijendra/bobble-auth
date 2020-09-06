@@ -24,16 +24,16 @@ class SignIn extends React.Component {
     };
    
     // Listen to the Firebase Auth state and set the local state.
-    componentDidMount() {
-      this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-          (user) => this.setState({isSignedIn: !!user})
-      );
-    }
+    // componentDidMount() {
+    //   this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+    //       (user) => this.setState({isSignedIn: !!user})
+    //   );
+    // }
     
-    // Make sure we un-register Firebase observers when the component unmounts.
-    componentWillUnmount() {
-      this.unregisterAuthObserver();
-    }
+    // // Make sure we un-register Firebase observers when the component unmounts.
+    // componentWillUnmount() {
+    //   this.unregisterAuthObserver();
+    // }
    
     render() {
       if (!this.state.isSignedIn) {
@@ -47,47 +47,7 @@ class SignIn extends React.Component {
           </div>
         );
       }
-      return (
-        <div>
-            <div className="googlephoto">
-                <img
-                alt="photurl"
-                src={firebase.auth().currentUser.photoURL}
-                className="googlepic"
-                />
-                <button id="logout" onClick={() => firebase.auth().signOut()}>LOG OUT</button>          
-            </div>
-            <style jsx>{`
-
-              .googlephoto {
-                display: flex;
-                flex-direction: column;
-              }
-
-              img {
-                height: 55vh;
-                border-radius: 200px;
-                padding: 10px;
-              }
-
-              #logout {
-                color: #fff;
-                cursor: pointer;
-                height: 5vh;
-                border-radius: 10px;
-                background-color: #1a1a1a;
-                border: #1a1a1a;
-              }
-
-              #logout:hover {
-                background-color: #000;
-                border: #000;
-              } 
-
-            `}</style>
-
-        </div>
-      );
+      return null;
     }
   }
   
