@@ -41,7 +41,6 @@ class Form extends Component {
     }
 
     handleSubmit = (event) => {
-        alert(`${this.state.firstName} ${this.state.lastName}  Signed-in !!!!`)
         console.log(this.state);
 
         //let target = event.target;
