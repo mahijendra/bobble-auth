@@ -50,6 +50,16 @@ body{
     padding:18px;
     text-align: center;
   }
+
+  .firebaseui-container{
+    max-width: none !important;
+  }
+
+  .firebaseui-idp-list{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+  }
     
    
   @media screen and (max-width:900px){
@@ -64,3 +74,4 @@ body{
     
     }
   
+    

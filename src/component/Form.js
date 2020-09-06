@@ -146,10 +146,8 @@ class Form extends Component {
         Create Account
       </button>      
     </form>    
-    <div className="container flex-1 flex flex-col items-center justify-center px-2">
-      <div className="grid grid-cols-2">
-        <SignIn/>
-      </div>
+    <div className="container items-center justify-center px-2">
+        <SignIn/>      
   </div>
 </div>
 {/* 
